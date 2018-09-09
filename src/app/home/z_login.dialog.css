@@ -1,0 +1,76 @@
+.h1{
+    text-align: center;
+}
+
+.example-container {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(255, 255, 255);
+    /* opacity: 0.9; */
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 4%;
+    padding-bottom: 5%;
+    border-radius: 12px;
+    
+  }
+.space{
+    height: 15%;
+}
+.example-container > * {
+    text-align: center;
+    width: 100%;
+    
+  }
+
+
+  .example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+
+.containerLogin{
+    background-color:rgb(100, 193, 255);
+}
+
+.loginButton{
+    background-color:rgb(152, 44, 202);
+    opacity: 0.9;
+    color:white;
+    width: 45%;
+    font-size: 14px;
+    border-radius: 4px;
+    font-family: "Lucida" Grande, sans-serif;
+    text-align: center;
+}
+.cancelButton{
+    width: 45%;
+    font-size: 14px;
+    font-family: "Lucida" Grande, sans-serif;
+    border-radius: 4px;
+    text-align: center;
+    color:white;
+    width: 45%;
+    background-color:rgb(48, 48, 48);
+
+}
+
+#err {
+    color : red;
+  }
+input{
+    text-align: center;
+}
+
+
+.login-page {
+    width: 300px;
+      text-align : right;
+      margin-right: 45px;
+      float: right;
+  }

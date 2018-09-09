@@ -1,0 +1,71 @@
+
+<ngx-spinner bdColor="rgba(51,51,51,0.8)"
+size="medium"
+color="#fff"
+loadingText="Loading..."
+type="ball-clip-rotate-multiple"></ngx-spinner>  
+
+<link href="../../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round" rel="stylesheet">
+
+<br>
+<div>
+  <form class="searchBar">
+    <input type="search" id="search" #search  [(ngModel)]="test" name="search" placeholder="Search for product name.." value="" class="searchbox input-text form-control" autocomplete="off" spellcheck="false" autocorrect="off" autocapitalize="off">
+    <button type="submit" class="btn" (click)="getAllProductByName(test)"><i class="fa fa-search"></i></button>
+  </form>
+  <div class="spacing"></div>
+  <div class="row">
+    <div class="container">
+      <div class="column left">
+        <div class="sidenav">
+            <a class="cat">Category</a>
+            <li class="subcategory" id="allProduct1" (click)="getAllProduct()">All</li>
+            <li class="subcategory" id="tee" (click)="getAllProductByCategory('tee')">T-Shirt</li>
+            <li class="subcategory" id="outerwear" (click)="getAllProductByCategory('outerwear')">Outerwear</li>
+            <li class="subcategory" id="sneakers" (click)="getAllProductByCategory('sneakers')">Sneakers</li>
+            <br>
+            <a class="cat">Brand</a>
+            <li class="subcategory" id="allProduct2" (click)="getAllProduct()">All</li>
+            <li class="subcategory" id="a bathing ape" (click)="getAllProductByBrand('a bathing ape')">A Bathing Ape</li>
+            <li class="subcategory" id="adidas" (click)="getAllProductByBrand('adidas')">Adidas</li>
+            <li class="subcategory" id="balenciaga" (click)="getAllProductByBrand('balenciaga')">Balenciaga</li>
+            <li class="subcategory" id="marcelo burlon" (click)="getAllProductByBrand('marcelo burlon')">Marcelo Burlon</li>
+            <li class="subcategory" id="off white" (click)="getAllProductByBrand('off white')">Off White</li>
+            <li class="subcategory" id="stussy"(click)="getAllProductByBrand('stussy')">Stussy</li>
+            <li class="subcategory" id="supreme" (click)="getAllProductByBrand('supreme')">Supreme</li>
+        </div>
+      </div>
+
+      <div class="column right">
+        
+      <div class="row text-center" style="margin-left: 180px;">
+          
+        <div class="product-card" *ngFor = "let a of products | paginate: { itemsPerPage: 8, currentPage: p } | orderBy: order">
+            
+          <div class="product-card-thumbnail">
+              <a (click)="takeData(a.productName,a.productImage,a.productBrand,a.productCategory)"
+              [routerLink]="['productDetail']" [routerLinkActive]="['active']"><img src={{a.productImage}}/></a>
+            </div>
+            <h2 class="product-card-title">{{a.productName}}</h2>
+            <span class="product-card-desc">{{a.productBrand}}</span>
+            <span class="product-card-desc">{{a.productCategory}}</span>
+            <div class="product-card-colors">
+                <button class="btn listing" (click)="takeData(a.productName,a.productImage,a.productBrand,a.productCategory)"
+                [routerLink]="['productDetail']" [routerLinkActive]="['active']"><i class="fa fa-bars"></i> View Listing</button>
+              
+          </div>
+          
+        </div>
+        <div class="paginationCss">
+          <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        </div> 
+      </div>
+      
+
+    </div>
+  </div>
+  </div>
+</div>

@@ -1,0 +1,65 @@
+<div class="h1">
+        <h3>Input Tracking Number</h3>
+</div>
+    
+    <div>
+            <form #f="ngForm" >
+    
+              <div class="example-container">
+                
+                
+                <mat-form-field>
+                    <mat-select placeholder="Delivery Courier" name="deliveryCourier" id="deliveryCourier"
+                    [formControl]="DeliveryCourierFormControl"
+                    [errorStateMatcher]="matcher" required #deliveryCourier>
+                        <mat-option value="JNE">JNE</mat-option>
+                        <mat-option value="JNE YES">JNE YES</mat-option>
+                        <mat-option value="JET">J&T</mat-option>
+                        <mat-option value="TIKI">TIKI</mat-option>
+                        <mat-option value="TIKI ONS">TIKI ONS</mat-option>
+                        
+                        
+                    </mat-select>
+                        <mat-hint align="end">Here's the dropdown arrow ^</mat-hint>
+                        
+                        <mat-error *ngIf="DeliveryCourierFormControl.hasError('required')">
+                                Delivery Courier is <strong>required</strong>
+                       </mat-error>
+                </mat-form-field>
+                <br>
+                <mat-form-field>
+                  <input #trackingNumber matInput placeholder="Tracking Number"  name="trackingNumber" id="trackingNumber"  
+                   [formControl]="TrackingNumberFormControl"
+                  [errorStateMatcher]="matcher" required
+                  >
+                  <mat-hint align="end">ex: 123GF213463</mat-hint>
+                  <mat-error *ngIf="TrackingNumberFormControl.hasError('required')">
+                        Tracking Number is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+                
+
+                
+              </div>
+              
+              <br>
+            <div style="text-align:center;">
+              <button mat-button class="cancelButton" (click)="onNoClick()" type="reset">
+                  <i class="material-icons">close</i> 
+                Cancel
+              </button>
+    
+              <button [promiseBtn]="promise" type="submit" mat-button class="updateButton" 
+                      #btnLogin (click) = 'inputTrackingNum(trackingNumber.value, deliveryCourier.value)'
+                      [disabled] = "!f.valid 
+                                    ||TrackingNumberFormControl.hasError('required')
+                                    ||DeliveryCourierFormControl.hasError('required')
+                                    ">
+                      <i class="material-icons">radio_button_checked</i> 
+                      Confirm
+              </button>
+              <br>
+    
+            </div>
+            </form>
+          </div>

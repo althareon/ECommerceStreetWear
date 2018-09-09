@@ -1,0 +1,57 @@
+.card {
+    max-width: 550px;
+  }
+  
+  .imgContainer{
+      margin: auto;
+      padding: auto;
+      max-width:40%;
+      max-height:40%;
+      display: block;
+  }
+
+
+  .itemDetail{
+      font-size: 140%;
+      font-family: "Gill Sans", "Gill Sans MT", Calibri, sans-serif
+  }
+
+  .container{
+      text-align: center;
+     
+  }
+
+  .column {
+    float: left;
+    width: 50%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.updateButton{
+    background-color:rgb(152, 44, 202);
+    opacity: 0.9;
+    color:white;
+    width: 50%;
+    font-size: 14px;
+    border-radius: 4px;
+    font-family: "Lucida" Grande, sans-serif;
+    text-align: center;
+    
+}
+.cancelButton{
+    width: 50%;
+    font-size: 14px;
+    font-family: "Lucida" Grande, sans-serif;
+    border-radius: 4px;
+    text-align: center;
+    color:white;
+    width: 45%;
+    background-color:rgb(48, 48, 48);
+
+}

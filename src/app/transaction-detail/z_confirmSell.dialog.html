@@ -1,0 +1,21 @@
+<div class = "exitButton" (click) = "onNoClick()">X</div>
+<div style="text-align: center"><h2 >Seller Confirm</h2></div>
+<div style="text-align: center">
+        <h4>*make sure you still have the item in this listing*</h4>
+ </div>
+
+ <br>
+ <div style="text-align:center;">
+        <button mat-button class="cancelButton" (click)="sellerReject()">
+            <i class="material-icons">close</i> 
+          Reject
+        </button>
+
+        <button [promiseBtn]="promise" type="submit" mat-button class="confirmButton" 
+                #btnConfirm (click)="sellerConfirm()">
+                <i class="material-icons">radio_button_checked</i> 
+                Confirm
+        </button>
+        <br>
+
+</div>

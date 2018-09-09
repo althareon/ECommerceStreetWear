@@ -1,0 +1,20 @@
+<div style="text-align: center"><h2 >Checkout Confirmation</h2></div>
+<div style="text-align: center">
+        <h4>Do you want to proceed checkout?</h4>
+ </div>
+
+ <br>
+ <div style="text-align:center;">
+        <button mat-button class="cancelButton" (click)="onNoClick()" type="reset">
+            <i class="material-icons">close</i> 
+          No
+        </button>
+
+        <button [promiseBtn]="promise" type="submit" mat-button class="confirmButton" 
+                #btnConfirm (click)="checkOut()">
+                <i class="material-icons">radio_button_checked</i> 
+                Yes
+        </button>
+        <br>
+
+</div>

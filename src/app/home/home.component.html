@@ -1,0 +1,127 @@
+<ngx-spinner bdColor="rgba(51,51,51,0.8)"
+    size="medium"
+    color="#fff"
+    loadingText="Loading..."
+    type="ball-clip-rotate-multiple"></ngx-spinner>  
+<!-- Bootstrap core CSS -->
+<link href="../../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+  </head>
+
+  <body>
+
+    <!-- Navigation -->
+    
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" style="font-family: 'Open Sans', sans-serif;">
+      <div class="container" >
+        <a class="navbar-brand" href="#">S & D STREETWEAR MARKET</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive" >
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" [routerLink]="['../home']" [routerLinkActive]="['active']">
+                <i class="material-icons">home</i> 
+                Home
+              </a>
+            </li>
+            &nbsp;
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['about']" [routerLinkActive]="['active']">
+                  <i class="material-icons" >list</i> 
+                About
+              </a>
+            </li>
+            &nbsp;
+            <li class="nav-item" *ngIf="flag">
+              <a class="nav-link" [routerLink]="['profile']" [routerLinkActive]="['active']">
+                  <i class="material-icons">assignment_ind</i> 
+                Profile
+              </a>
+            </li>
+            &nbsp;
+            <li class="nav-item" style="color:white" *ngIf="flag">
+              <a class="nav-link" [routerLink]="['order']" [routerLinkActive]="['active']"> 
+                <i class="material-icons">assignment</i> 
+                Orders
+              </a> 
+           </li>
+         
+            &nbsp;
+            <li class="nav-item" style="color:white" *ngIf="flag">
+                <a class="nav-link" [routerLink]="['cart']" [routerLinkActive]="['active']"> 
+                  <i class="material-icons">shopping_cart</i> 
+                  Cart 
+                </a> 
+             </li>
+             &nbsp;
+            
+            <li class="nav-item" style="color:white" *ngIf="flag">
+               <div class="nav-link" style="color: white"> Welcome, {{name}} </div> 
+            </li>
+        
+            
+
+           
+            <button *ngIf="!flag" mat-raised-button (click)="loginDialog()">
+                <i class="material-icons">person</i> 
+              Login 
+            </button> 
+            &nbsp;
+            <button  *ngIf="!flag" mat-raised-button (click)="registerDialog()">
+                <i class="material-icons">how_to_reg</i> 
+              Register
+            </button>
+            <button  *ngIf="flag" mat-raised-button (click)="logOut()">
+                <i class="material-icons">exit_to_app</i> 
+              Log Out 
+            </button>
+
+            
+          </ul>
+        </div>
+      </div>
+      
+    </nav>
+      
+  
+   <!-- container -->
+   <router-outlet></router-outlet>
+    <!-- /.container -->
+
+
+    <!-- <ul>
+      <li *ngFor = "let a of products">
+        {{a.id}}
+        {{a.productName}}
+        {{a.productBrand}}
+      </li>
+    </ul> -->
+    
+
+      
+
+    <!-- Bootstrap core JavaScript -->
+    <!-- <script src="../../assets/jquery/jquery.min.js"></script>
+    <script src="../../assets/bootstrap/js/bootstrap.bundle.min.js"></script> -->
+
+  </body>
+  <!-- <div class="footer">
+      FOOTER COPYRIGHT 2018
+      </div> -->
+
+</html>

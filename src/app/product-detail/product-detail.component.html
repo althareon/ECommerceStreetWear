@@ -1,0 +1,117 @@
+
+<head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+<ngx-spinner bdColor="rgba(51,51,51,0.8)"
+size="medium"
+color="#fff"
+loadingText="Loading..."
+type="ball-clip-rotate-multiple"></ngx-spinner>  
+<br><br><br>
+<div class="row">
+  <div class="column left">
+        <div class="productImg">
+               
+            <div *ngFor="let a of product">
+            <img src={{a.productImage}}/>
+                <div class="productTitle">
+                    {{a.productName}}
+                    <br>
+                    <div class="productDetail">
+                        {{a.productBrand}}
+                        <br>
+                        {{a.productCategory}}
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+<div class="column right">
+        <div *ngIf="!flag">
+                <h4>Active Sell Listing</h4>
+        </div>
+        <div *ngIf="flag">
+                <h4>Other Active Sell Listing</h4>
+        </div>
+
+    <table class="table table-hover" matSort (matSortChange)="sortData($event)">
+        <thead style="text-align: center">
+            <tr class="tableHeader">
+                <th style="width: 260px;" mat-sort-header="date">Date</th>
+                <!-- <td style="width: 300px">Name</td>
+                <td style="width: 100px">Brand</td> -->
+                <th style="width: 90px" mat-sort-header="size">Size</th>
+                <th style="width: 160px" mat-sort-header="price">Price</th>
+                <th style="width: 30px"> Cart </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let a of transaksis | paginate: { itemsPerPage: 5, currentPage: p, id: 'first' }">
+                <td>{{a.localDateTime | date:'fullDate'}} {{a.localDateTime | date:'shortTime'}}</td>
+                <!-- <td>{{a.productName}}</td>
+                <td>{{a.productBrand}}</td> -->
+                <td>{{a.productSize}}</td>
+                <td>{{a.productPrice | currency : 'IDR '}}</td>
+                <td>
+                    <button class="cartButton" (click)="confirmDialog(a.id, a.productImage, a.productName, a.productSize,a.productPrice)">
+                        <i class="material-icons">shopping_cart</i>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            
+        </tfoot>
+    </table>  
+    <div style="width:65%; text-align: center;">
+            <pagination-controls (pageChange)="p = $event" id="first"></pagination-controls>
+    </div> 
+
+    <div *ngIf="flag">
+            <div> 
+            <div>========================================================</div>
+            </div>
+        
+            <div>
+                    <h4>Your Active Sell Listing</h4>
+            </div>
+        
+            <div>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr class="tableHeader">
+                                <td style="width: 210px">Date</td>
+                                <td style="width: 80px">Size</td>
+                                <td style="width: 160px">Price</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let a of ownTransaksis | paginate: { itemsPerPage: 5, currentPage: q, id: 'second'} ">
+                                <td>{{a.localDateTime | date:'fullDate'}} {{a.localDateTime | date:'shortTime'}}</td>
+                                <td>{{a.productSize}}</td>
+                                <td>{{a.productPrice | currency : 'IDR '}}</td>
+                                
+                            </tr>
+                        </tbody>
+                    </table>   
+                    <br>
+                    <div style="width:65%; text-align: center;">
+                            <pagination-controls (pageChange)="q = $event" id="second"></pagination-controls>
+                    </div> 
+                    <button mat-button class="btnClass" (click)="sellDialog()">
+                            <i class="material-icons">add_circle</i> 
+                        Sell this Product
+                    </button>
+                </div>
+        
+        </div>
+
+
+</div>
+<br><br><br>
+
+
+<!-- 
+addToCart(a.id, a.productImage, a.productName, a.productPrice) -->

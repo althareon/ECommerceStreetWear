@@ -1,0 +1,53 @@
+<div class="h1">
+    <h3>Login</h3>
+</div>
+
+<div class="col-4" style="padding: 2%; opacity : 0.85;   ">
+        <form (submit)="Login(email.value, password.value)" >
+
+          <div class="example-container">
+            
+            
+            <mat-form-field>
+              <input matInput placeholder="Email"  name="email" id="email" 
+              #email
+              [formControl]="LoginEmailFormControl"
+              [errorStateMatcher]="matcher">
+
+              <mat-error *ngIf="LoginEmailFormControl.hasError('required')">
+                Email is <strong>required</strong>
+              </mat-error>
+              
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+              <input matInput placeholder="Password"  name="password" id="password" 
+              #password type="password"
+              [formControl]="LoginPasswordFormControl"
+              [errorStateMatcher]="matcher">
+
+              <mat-error *ngIf="LoginPasswordFormControl.hasError('required')">
+                Password is <strong>required</strong>
+              </mat-error>
+
+            </mat-form-field>
+            
+          </div>
+          
+          <br>
+        <div style="text-align:center;">
+          <button mat-button class="cancelButton" (click)="onNoClick()" type="reset">
+              <i class="material-icons">close</i> 
+            Cancel
+          </button>
+
+          <button [promiseBtn]="promise" type="submit" mat-button class="loginButton" 
+                  #btnLogin (click) = 'Login(email.value, password.value)'>
+                  <i class="material-icons">radio_button_checked</i> 
+                  Login
+          </button>
+          <br>
+
+        </div>
+        </form>
+      </div>

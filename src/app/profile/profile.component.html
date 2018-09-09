@@ -1,0 +1,35 @@
+<link href="../../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+
+<ngx-spinner bdColor="rgba(51,51,51,0.8)"
+size="medium"
+color="#fff"
+loadingText="Loading..."
+type="ball-clip-rotate-multiple"></ngx-spinner>  
+
+<body>
+  <main>
+
+<div class="row">
+    <div class="container">
+        <div class="column left">
+            <div class="sidenav">
+                <a class="cat" [routerLink]="['../profile']" [routerLinkActive]="['active']" id="1" (click)="changeBold(1)">Profile</a>
+                <a class="cat" [routerLink]="['sellTransaction']" [routerLinkActive]="['active']" id="2" (click)="changeBold(2)">Sell Transaction</a>
+                <a class="cat" [routerLink]="['buyTransaction']" [routerLinkActive]="['active']" id="3" (click)="changeBold(3)">Buy Transaction</a>
+            </div>
+        </div>
+      <div class="column right">
+        <router-outlet></router-outlet>
+        
+        </div>
+      </div>
+    </div>
+    
+
+</main>
+</body>

@@ -1,0 +1,82 @@
+<ngx-spinner bdColor="rgba(51,51,51,0.8)"
+size="medium"
+color="#fff"
+loadingText="Loading..."
+type="ball-clip-rotate-multiple"></ngx-spinner>  
+<body>
+    <main>
+      <div>
+        <mat-card class="card">
+          All payment must be done By <b style="color: green">BCA</b> to 
+          <b style="color: green">6040784649 - Denny Intan</b>
+        </mat-card>
+      </div>
+      <h2>Order ID : {{checkoutId}}</h2>
+        <h5>{{date | date:'fullDate'}} {{date | date:'shortTime'}}</h5>
+        <h5 id="h5">Payment Status : {{paymentStatus}}</h5>
+        <div *ngIf = "!flagStatus">
+          <button mat-raised-button matTooltip="Click to confirm payment" (click)="confirmPaymentDialog()">
+            Confirm Payment
+          </button>
+        </div>
+        <div *ngIf = "trackNumToBuyerCompleteFlag">
+            <h5 class="trackNumComplete">
+              Overall Status  : {{overallStatus}} <br>
+              Tracking Number : {{trackNumToBuyer}} - {{deliveryCourier}}
+              <br><br>
+              <button mat-raised-button matTooltip="Click to confirm received product" (click)="confirmReceivedDialog()">
+                  Confirm Received Product
+              </button>
+
+            </h5>
+        </div>
+        <div *ngIf = "receivedStatusFlag">
+            <h5 style="color: green; font-weight: bold"> Buyer Received Status : {{buyerReceivedStatus}}</h5>
+        </div>
+        
+<div class="basket">  
+        <h5 style="text-align: right"><b>Grand Total : {{grandTotal | currency : 'IDR '}}</b></h5>
+        <h5>Order Details</h5>
+        <div class="basket-labels">
+          <ul>
+            <li class="item" style="padding-left: 2.5%">Item</li>
+            <li class="grandTotal">Price</li>
+            <li class="sellerStatus">Seller Status</li>
+            <li class="verifyStatus">Verify Status</li>
+            <li class="overallStatus">Overall Status</li>
+          </ul>
+        </div>
+        <div class="basket-product" *ngFor="let a of transaction | paginate: { itemsPerPage: 5, currentPage: p , id: 'first'}">
+        
+          <div class="item">
+            <div class="product-image">
+              <img src="{{a.productImage}}" alt="Placholder Image 2" class="product-frame">
+            </div>
+            <div class="product-details">
+              <h1><strong><span class="item-quantity">1</span>x</strong> {{a.productName}}</h1>
+              <p><strong>{{a.productBrand}}</strong> -- <strong>Size {{a.productSize}}</strong></p>
+              <p>Product Code - {{a.id}}</p>
+            </div>
+          </div>
+          
+          <div class="grandTotal">{{a.productPrice | currency : 'IDR '}}</div>
+          <div class = "sellerStatus">{{a.sellerStatus}}</div>
+          <div class="verifyStatus">
+            {{a.verifyStatus}}
+          </div>
+          <div class="overallStatus">{{a.overallStatus}}</div>
+          <div class="remove">
+            <button (click) ="transDetail(a.id)">Transaction Details</button>
+          </div>
+          
+        </div>
+        <br>
+        <div class="paginationCss">
+            <pagination-controls (pageChange)="p = $event" id="first"></pagination-controls>
+        </div>
+        
+      </div>
+    
+    
+  </main>
+  </body>

@@ -1,0 +1,29 @@
+
+.confirmButton{
+    background-color:rgb(152, 44, 202);
+    opacity: 0.9;
+    color:white;
+    width: 45%;
+    font-size: 14px;
+    border-radius: 4px;
+    font-family: "Lucida" Grande, sans-serif;
+    text-align: center;
+}
+.cancelButton{
+    width: 45%;
+    font-size: 14px;
+    font-family: "Lucida" Grande, sans-serif;
+    border-radius: 4px;
+    text-align: center;
+    color:white;
+    width: 45%;
+    background-color:rgb(48, 48, 48);
+
+}
+.exitButton{
+    text-align: right;
+    cursor: pointer;
+}
+.exitButton:hover{
+    font-weight: bold;
+}

@@ -1,0 +1,20 @@
+<div style="text-align: center"><h2 >Delete Transaction Confirmation</h2></div>
+<div style="text-align: center">
+        <h4>Are you sure you want to delete this transaction ?</h4>
+ </div>
+
+ <br>
+ <div style="text-align:center;">
+        <button mat-button class="cancelButton" (click)="onNoClick()">
+            <i class="material-icons">close</i> 
+          No
+        </button>
+
+        <button [promiseBtn]="promise" type="submit" mat-button class="confirmButton" 
+                #btnConfirm (click)="deleteTransactionServ()">
+                <i class="material-icons">radio_button_checked</i> 
+                Delete
+        </button>
+        <br>
+
+</div>

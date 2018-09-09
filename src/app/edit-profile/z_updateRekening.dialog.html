@@ -1,0 +1,77 @@
+<div class="h1">
+        <h3>Update Account (Rekening)</h3>
+</div>
+    
+    <div>
+            <form #f="ngForm" >
+    
+              <div class="example-container">
+                
+                
+                <mat-form-field>
+                    <mat-select placeholder="Choose Bank" name="namabank" id="namabank"
+                    [formControl]="NamaBankFormControl"
+                    [errorStateMatcher]="matcher" required #namabank>
+                        <mat-option value="BCA">BCA</mat-option>
+                        
+                        
+                    </mat-select>
+                        <mat-hint align="end">Here's the dropdown arrow ^</mat-hint>
+                        
+                        <mat-error *ngIf="NamaBankFormControl.hasError('required')">
+                                Bank is <strong>required</strong>
+                       </mat-error>
+                </mat-form-field>
+                <br>
+                <mat-form-field>
+                  <input #norekening matInput placeholder="Account Number (nomor rekening)"  name="norekening" id="norekening" minlength="10" maxlength="10" onkeydown="return ( event.ctrlKey 
+                  || event.altKey 
+                  || (47<event.keyCode && event.keyCode<58 && event.shiftKey==false) 
+                  || (95<event.keyCode && event.keyCode<106)
+                  || (event.keyCode==8) || (event.keyCode==9) 
+                  || (event.keyCode>34 && event.keyCode<40) 
+                  || (event.keyCode==46) 
+                  )" [formControl]="NoRekeningFormControl"
+                  [errorStateMatcher]="matcher" required
+                  >
+                  <mat-hint align="end">ex: 6040000000</mat-hint>
+                  <mat-error *ngIf="NoRekeningFormControl.hasError('required') || NoRekeningFormControl.hasError('minlength')">
+                        Account Number is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+                <br>
+                <mat-form-field>
+                        <input #namarekening matInput placeholder="Account Name"  name="namarekening" id="namarekening" 
+                   [formControl]="NamaRekeningFormControl"
+                  [errorStateMatcher]="matcher" required
+                  >
+                  <mat-error *ngIf="NamaRekeningFormControl.hasError('required')">
+                        Account Name is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+
+                
+              </div>
+              
+              <br>
+            <div style="text-align:center;">
+              <button mat-button class="cancelButton" (click)="onNoClick()" type="reset">
+                  <i class="material-icons">close</i> 
+                Cancel
+              </button>
+    
+              <button [promiseBtn]="promise" type="submit" mat-button class="updateButton" 
+                      #btnLogin (click) = 'updateRekening(namabank.value,norekening.value,namarekening.value)'
+                      [disabled] = "!f.valid 
+                                    ||NamaBankFormControl.hasError('required')
+                                    ||NoRekeningFormControl.hasError('required')
+                                    ||NoRekeningFormControl.hasError('minlength')
+                                    ||NamaRekeningFormControl.hasError('required')">
+                      <i class="material-icons">radio_button_checked</i> 
+                      Update
+              </button>
+              <br>
+    
+            </div>
+            </form>
+          </div>

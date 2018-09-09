@@ -1,0 +1,17 @@
+.card{
+    width: 400px;
+}
+
+
+
+.iconBtn{
+    cursor: pointer;
+}
+
+.iconBtn:hover{
+    font-weight: bold;
+}
+
+.sizing{
+    font-size: 150%;
+}

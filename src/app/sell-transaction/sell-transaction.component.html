@@ -1,0 +1,116 @@
+
+<div class="basket">
+    <h2>Sell Transaction</h2>
+    <div class="note">
+        <div class="littleBoxBlue"></div>
+        <div class="note">User</div>
+    </div>
+    <div class="note">
+        <div class="littleBoxRed"></div>
+        <div class="note">Admin</div>
+    </div>
+    
+    
+    <div class="basket-labels" matSort (matSortChange)="sortData($event)">
+      <ul>
+        <li class="item item-heading" mat-sort-header="item">Item</li>
+        <li class="size" mat-sort-header="size">Size</li>
+        <li class="price" mat-sort-header="price">Price</li>
+        <li class="quantity">Verify Status</li>
+        <li class="overallStatus" mat-sort-header="status" style="padding-left: 25px;">Overall Status</li>
+      </ul>
+    </div>
+    <table class="basket-product" *ngFor="let a of sellTransaksi | paginate: { itemsPerPage: 5, currentPage: p , id: 'first'}" >
+    
+      <div class="item">
+        <div class="product-image">
+          <img src="{{a.productImage}}" alt="Placholder Image 2" class="product-frame">
+        </div>
+        <div class="product-details">
+          <h1><strong><span class="item-quantity">1</span>x</strong> {{a.productName}}</h1>
+        
+          <p><strong>{{a.productBrand}} - {{a.id}}</strong></p>
+        </div>
+      </div>
+      <div class="size">{{a.productSize}}</div>
+      <div class="price">{{a.productPrice | currency : 'IDR '}}</div>
+      <div class="quantity" style="margin-left:12px;">
+        {{a.verifyStatus}}
+      </div>
+      <div class="overallStatus">
+        {{a.overallStatus}}<br>
+        {{a.verifyNote}}<br>
+        <div style="color: blue; font-weight: bold">{{a.delivery.trackNumSellerToUs}} - {{a.delivery.deliveryCourier}}</div>
+        <div style="color: red; font-weight: bold">{{a.delivery.trackNumUsToSeller}} - {{a.delivery.deliveryCourier}}</div>
+      </div>
+      <br>
+      <div class="remove">
+        <button (click) ="transDetail(a.id)">Details</button>
+      </div>
+      
+    </table>
+    <br>
+    <div class="paginationCss">
+        <pagination-controls (pageChange)="p = $event" id="first"></pagination-controls>
+    </div>
+    
+  </div>
+
+
+
+<div class="basket">
+    <h2>Selling History</h2>
+    <div class="note">
+        <div class="littleBoxBlue"></div>
+        <div class="note">User</div>
+    </div>
+    <div class="note">
+        <div class="littleBoxRed"></div>
+        <div class="note">Admin</div>
+    </div>
+    <div class="basket-labels">
+      <ul>
+        <li class="item item-heading">Item</li>
+        <li class="size">Size</li>
+        <li class="price">Price</li>
+        <li class="quantity">Verify Status</li>
+        <li class="overallStatus">Overall Status</li>
+      </ul>
+    </div>
+    <div class="basket-product" *ngFor="let a of historySellTransaksi | paginate: { itemsPerPage: 5, currentPage: q , id: 'second'}">
+    
+      <div class="item">
+        <div class="product-image">
+          <img src="{{a.productImage}}" alt="Placholder Image 2" class="product-frame">
+        </div>
+        <div class="product-details">
+          <h1><strong><span class="item-quantity">1</span>x</strong> {{a.productName}}</h1>
+          <p><strong>{{a.id}}</strong></p>
+          <p><strong>{{a.productBrand}}</strong></p>
+        </div>
+      </div>
+      <div class="size">{{a.productSize}}</div>
+      <div class="price">{{a.productPrice | currency : 'IDR '}}</div>
+      <div class="quantity">
+          {{a.verifyStatus}}
+      </div>
+      <div class="overallStatus">
+        {{a.overallStatus}}<br>
+        {{a.verifyNote}}
+        <div>Payment - {{a.paymentToSeller.paymentStatus}}</div>
+        <div style="color:blue">
+          {{a.delivery.trackNumUsToSeller}} - {{a.delivery.deliveryCourier}}<br>
+         
+        </div>
+      </div>
+      <div class="remove">
+        <button (click) ="transDetail(a.id)">Details</button>
+      </div>
+      
+    </div>
+    <br>
+    <div class="paginationCss">
+        <pagination-controls (pageChange)="q = $event" id="second"></pagination-controls>
+    </div>
+    
+  </div>

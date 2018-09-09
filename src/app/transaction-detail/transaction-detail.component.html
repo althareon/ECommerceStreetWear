@@ -1,0 +1,46 @@
+
+<h2>Transaction Detail</h2>
+<mat-card class="card" *ngFor ="let a of transaction">
+  <mat-card-header>
+    
+  </mat-card-header>
+  <br>
+  <mat-card-content class="row">
+      <mat-card-content class="imgContainer column">
+        <img mat-card-image src="{{a.productImage}}">
+      </mat-card-content>
+      <mat-card-content class="container column" *ngIf = "status2">
+        All item must be sent to this address!<br>
+        <b style="color: green"><i>Jalan the Green 15310, Cilenggang, Serpong, Cilenggang, Serpong<br>
+          Kota Tangerang Selatan, Banten 15310</i></b>
+
+      </mat-card-content>
+
+      <mat-card-content class="container column" *ngIf = "status3">
+        Item Sent!<br>
+        <b style="color: green">
+          Tracking number : {{a.delivery.trackNumSellerToUs}}<br>
+          Delivery Courier : {{a.delivery.deliveryCourier}}
+        </b>
+
+      </mat-card-content>
+</mat-card-content>
+<mat-card-content class="itemDetail ">
+  <b>ID = </b> {{a.id}} <br>
+  <b>Product Name = </b>{{a.productName}} <br>
+  <b>Brand = </b>{{a.productBrand}} <br>
+  <b>Size = </b>{{a.productSize}} <br>
+  <b>Price = </b>{{a.productPrice | currency : 'IDR '}}
+  <div id="test"><b>Status = </b>{{a.overallStatus}}</div>
+  <div id="test"><b>Note from Admin = </b>{{a.verifyNote}}</div>
+</mat-card-content>
+<mat-card-actions class="container" *ngIf = "deleteStatus">
+    <button mat-button class="updateButton" (click)= "deleteTransactionDialog()">Delete Transaction</button>
+  </mat-card-actions>
+  <mat-card-actions class="container" *ngIf = "status">
+    <button mat-button class="updateButton" (click)= "confirmSellDialog()">Confirm Sell</button>
+  </mat-card-actions>
+  <mat-card-actions class="container" *ngIf = "status2">
+    <button mat-button  class="updateButton" (click)= "inputTrackingNumToAdminDialog()">Input Tracking Number</button>
+  </mat-card-actions>
+</mat-card>

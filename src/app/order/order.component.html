@@ -1,0 +1,99 @@
+<ngx-spinner bdColor="rgba(51,51,51,0.8)"
+size="medium"
+color="#fff"
+loadingText="Loading..."
+type="ball-clip-rotate-multiple"></ngx-spinner>  
+<body>
+    <main>
+<div class="basket">
+        <h2>Order List</h2>
+        <div class="basket-labels">
+          <ul>
+            <li class="item" style="padding-left: 2.5%">Order ID</li>
+            <li class="grandTotal">Grand Total</li>
+            <li class="paymentStatus">Payment Status</li>
+            <li class="overallStatus">Overall Status</li>
+          </ul>
+        </div>
+        <div class="basket-product" *ngFor="let a of checkoutList | paginate: { itemsPerPage: 5, currentPage: p , id: 'first'}">
+        
+          <div class="item">
+            
+            <div class="product-details">
+              <h1>{{a.id}}</h1>
+              <p><strong>{{a.localDateTime | date:'fullDate'}}<br>{{a.localDateTime | date:'shortTime'}}</strong></p>
+            </div>
+          </div>
+          
+          <div class="grandTotal">{{a.grandTotal | currency : 'IDR '}}</div>
+          <div class="paymentStatus">
+            {{a.paymentStatus}}<br>
+            <b style="color: green">{{a.paymentToBuyer.paymentStatus}}</b>
+          </div>
+          <div class="overallStatus">
+            {{a.statusPhase2}}<br>
+            {{a.deliveryCourier}} - {{a.trackNumUsToBuyer}}<br>
+            <b style="color: green">{{a.buyerReceivedStatus}}</b>
+            <b style="color: green">{{a.refundStatus}}</b>
+          </div>
+          <div class="remove">
+            <button (click) ="goToOrderDetail(a.id, a.localDateTime, 
+            a.grandTotal, a.paymentStatus, a.statusPhase2,a.deliveryCourier,a.trackNumUsToBuyer, a.buyerReceivedStatus)">Details</button>
+          </div>
+          
+        </div>
+        <br>
+        <div style="text-align: right"><b style="color:red">*click details to confirm payment*</b></div>
+        <div class="paginationCss">
+            <pagination-controls (pageChange)="p = $event" id="first"></pagination-controls>
+        </div>
+        
+      </div>
+    <br><br>
+
+    <div class="basket">
+      <h2>Order History</h2>
+      <div class="basket-labels">
+        <ul>
+          <li class="item" style="padding-left: 2.5%">Order ID</li>
+          <li class="grandTotal">Grand Total</li>
+          <li class="paymentStatus">Payment Status</li>
+          <li class="overallStatus">Overall Status</li>
+        </ul>
+      </div>
+      <div class="basket-product" *ngFor="let a of checkoutListHistory | paginate: { itemsPerPage: 5, currentPage: q , id: 'second'}">
+      
+        <div class="item">
+          
+          <div class="product-details">
+            <h1>{{a.id}}</h1>
+            <p><strong>{{a.localDateTime | date:'fullDate'}}<br>{{a.localDateTime | date:'shortTime'}}</strong></p>
+          </div>
+        </div>
+        
+        <div class="grandTotal">{{a.grandTotal | currency : 'IDR '}}</div>
+        <div class="paymentStatus">
+          {{a.paymentStatus}}
+        </div>
+        <div class="overallStatus">
+          {{a.statusPhase2}}<br>
+          {{a.deliveryCourier}} - {{a.trackNumUsToBuyer}}<br>
+          <b style="color: green">{{a.buyerReceivedStatus}}</b>
+          <b style="color: green">{{a.refundStatus}}</b>
+        </div>
+        <div class="remove">
+          <button (click) ="goToOrderDetail(a.id, a.localDateTime, 
+          a.grandTotal, a.paymentStatus, a.statusPhase2,a.deliveryCourier,a.trackNumUsToBuyer, a.buyerReceivedStatus)">Details</button>
+        </div>
+        
+      </div>
+      <br>
+      <div style="text-align: right"><b style="color:red">*click details to confirm payment*</b></div>
+      <div class="paginationCss">
+          <pagination-controls (pageChange)="q = $event" id="second"></pagination-controls>
+      </div>
+      
+    </div>
+    
+  </main>
+  </body>

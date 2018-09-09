@@ -1,0 +1,84 @@
+<div class="h1">
+        <h3>Payment Confirmation</h3>
+</div>
+    
+    <div>
+            <form #f="ngForm" >
+    
+              <div class="example-container">
+                
+                
+                    <mat-form-field>
+                            <input #namaBank matInput  name="namaBank" id="namaBank" value="BCA" disabled>
+                    </mat-form-field>
+                <br>
+                <mat-form-field>
+                  <input #norekening matInput placeholder="Account Number (Rekening)"  name="norekening" id="norekening" minlength="10" maxlength="10" onkeydown="return ( event.ctrlKey 
+                  || event.altKey 
+                  || (47<event.keyCode && event.keyCode<58 && event.shiftKey==false) 
+                  || (95<event.keyCode && event.keyCode<106)
+                  || (event.keyCode==8) || (event.keyCode==9) 
+                  || (event.keyCode>34 && event.keyCode<40) 
+                  || (event.keyCode==46) 
+                  )" [formControl]="NoRekeningFormControl"
+                  [errorStateMatcher]="matcher" required
+                  >
+                  <mat-hint align="end">ex: 6040000000</mat-hint>
+                  <mat-error *ngIf="NoRekeningFormControl.hasError('required') || NoRekeningFormControl.hasError('minlength')">
+                        Nomor Rekening is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+                <br>
+                <mat-form-field>
+                        <span matPrefix>IDR.&nbsp;</span>
+                        <input #nilaitransfer matInput placeholder="Amount"  name="nilaitransfer" id="nilaitransfer"  onkeydown="return ( event.ctrlKey 
+                        || event.altKey 
+                        || (47<event.keyCode && event.keyCode<58 && event.shiftKey==false) 
+                        || (95<event.keyCode && event.keyCode<106)
+                        || (event.keyCode==8) || (event.keyCode==9) 
+                        || (event.keyCode>34 && event.keyCode<40) 
+                        || (event.keyCode==46) 
+                        )" [formControl]="NilaiTransferFormControl"
+                        [errorStateMatcher]="matcher" required
+                        >
+                        
+                        <mat-error *ngIf="NilaiTransferFormControl.hasError('required')">
+                              Nilai Transfer is <strong>required</strong>
+                          </mat-error>
+                      </mat-form-field>
+                      <br>
+                <mat-form-field>
+                        <input #namarekening matInput placeholder="Account Name"  name="namarekening" id="namarekening" 
+                   [formControl]="NamaRekeningFormControl"
+                  [errorStateMatcher]="matcher" required
+                  >
+                  <mat-error *ngIf="NamaRekeningFormControl.hasError('required')">
+                        Nama Rekening is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+
+                
+              </div>
+              
+              <br>
+            <div style="text-align:center;">
+              <button mat-button class="cancelButton" (click)="onNoClick()" type="reset">
+                  <i class="material-icons">close</i> 
+                Cancel
+              </button>
+    
+              <button [promiseBtn]="promise" type="submit" mat-button class="updateButton" 
+                      #btnLogin (click) = 'inputConfirmPayment(norekening.value,namarekening.value,nilaitransfer.value)'
+                      [disabled] = "!f.valid 
+                                    ||NoRekeningFormControl.hasError('required')
+                                    ||NoRekeningFormControl.hasError('minlength')
+                                    ||NamaRekeningFormControl.hasError('required')
+                                    ||NilaiTransferFormControl.hasError('required')">
+                      <i class="material-icons">radio_button_checked</i> 
+                      Confirm
+              </button>
+              <br>
+    
+            </div>
+            </form>
+          </div>

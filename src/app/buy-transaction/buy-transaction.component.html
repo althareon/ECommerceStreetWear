@@ -1,0 +1,98 @@
+
+<div class="basket">
+    <h2>Buy Transaction</h2>
+    <div class="note">
+        <div class="littleBoxBlue"></div>
+        <div class="note">User</div>
+    </div>
+    <div class="note">
+        <div class="littleBoxRed"></div>
+        <div class="note">Admin</div>
+    </div>
+    <div class="basket-labels">
+      <ul>
+        <li class="item item-heading">Item</li>
+        <li class="size">Size</li>
+        <li class="price">Price</li>
+        <li class="quantity">Verify Status</li>
+        <li class="overallStatus">Overall Status</li>
+      </ul>
+    </div>
+    <div class="basket-product" *ngFor="let a of buyTransaksi | paginate: { itemsPerPage: 5, currentPage: p , id: 'first'}">
+    
+      <div class="item">
+        <div class="product-image">
+          <img src="{{a.productImage}}" alt="Placholder Image 2" class="product-frame">
+        </div>
+        <div class="product-details">
+          <h1><strong><span class="item-quantity">1</span>x</strong> {{a.productName}}</h1>
+          <p><strong>{{a.productBrand}}</strong></p>
+        </div>
+      </div>
+      <div class="size">{{a.productSize}}</div>
+      <div class="price">{{a.productPrice | currency : 'IDR '}}</div>
+      <div class="quantity">
+        {{a.verifyStatus}}
+      </div>
+      <div class="overallStatus">{{a.overallStatus}}</div>
+      <div class="remove">
+        <button (click) ="transDetail(a.id)">Details</button>
+      </div>
+      
+    </div>
+    <br>
+    <div class="paginationCss">
+        <pagination-controls (pageChange)="p = $event" id="first"></pagination-controls>
+    </div>
+    
+  </div>
+
+
+
+<div class="basket">
+    <h2>Buy History</h2>
+    <div class="note">
+        <div class="littleBoxBlue"></div>
+        <div class="note">User</div>
+    </div>
+    <div class="note">
+        <div class="littleBoxRed"></div>
+        <div class="note">Admin</div>
+    </div>
+    <div class="basket-labels">
+      <ul>
+        <li class="item item-heading">Item</li>
+        <li class="size">Size</li>
+        <li class="price">Price</li>
+        <li class="quantity">Quantity</li>
+        <li class="overallStatus">Overall Status</li>
+      </ul>
+    </div>
+    <div class="basket-product" *ngFor="let a of historyBuyTransaksi | paginate: { itemsPerPage: 5, currentPage: q , id: 'second'}">
+    
+      <div class="item">
+        <div class="product-image">
+          <img src="{{a.productImage}}" alt="Placholder Image 2" class="product-frame">
+        </div>
+        <div class="product-details">
+          <h1><strong><span class="item-quantity">1</span>x</strong> {{a.productName}}</h1>
+          <p><strong>{{a.productBrand}}</strong></p>
+        </div>
+      </div>
+      <div class="size">{{a.productSize}}</div>
+      <div class="price">{{a.productPrice | currency : 'IDR '}}</div>
+      <div class="quantity" style="margin-left:12px;">
+        1
+      </div>
+      <div class="overallStatus">{{a.overallStatus}}</div>
+      <div class="remove">
+        <button (click) ="transDetail(a.id)">Details</button>
+      </div>
+      
+    </div>
+    <br>
+    <div class="paginationCss">
+        <pagination-controls (pageChange)="q = $event" id="second"></pagination-controls>
+    </div>
+    
+  </div>

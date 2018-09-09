@@ -1,0 +1,94 @@
+<div class="h1">
+        <h3>Sell this Product</h3>
+    </div>
+    
+    <div class="col-4" style="padding: 2%; opacity : 0.85;   ">
+            <form (submit)="addSellTransaction(price.value)" >
+    
+              <div class="example-container">
+                <div *ngIf="flag">
+                  <div style="font-weight: bold">Size</div>
+                  <div style="font-weight: bold">U.S. Men's Sizes</div>  
+                <div class="wrapper">
+                  
+                  <div class="box defaultSize" id ="5" (click)="size(5)">5</div>
+                  <div class="box" id ="5.5" (click)="size(5.5)" >5.5</div>
+                  <div class="box" id ="6"(click)="size(6)">6</div>
+                  <div class="box" id ="6.5"(click)="size(6.5)">6.5</div>
+                  <div class="box" id ="7"(click)="size(7)">7</div>
+                  <div class="box" id ="7.5"(click)="size(7.5)">7.5</div>
+                  <div class="box" id ="8"(click)="size(8)">8</div>
+                  <div class="box" id ="8.5"(click)="size(8.5)">8.5</div>
+                  <div class="box" id ="9"(click)="size(9)">9</div>
+                  <div class="box" id ="9.5"(click)="size(9.5)">9.5</div>
+                  <div class="box" id ="10"(click)="size(10)">10</div>
+                  <div class="box" id ="10.5"(click)="size(10.5)">10.5</div>
+                  <div class="box" id ="11"(click)="size(11)">11</div>
+                  <div class="box" id ="11.5"(click)="size(11.5)">11.5</div>
+                  <div class="box" id ="12"(click)="size(12)">12</div>
+                  <div class="box" id ="12.5"(click)="size(12.5)">12.5</div>
+                  <div class="box" id ="13"(click)="size(13)">13</div>
+                  <div class="box" id ="13.5"(click)="size(13.5)">13.5</div>
+                </div>
+              </div>
+               
+
+                <div *ngIf="!flag">
+                    <div style="font-weight: bold">Size</div>
+                    <div class="wrapper2">
+                  
+                        <div class="box defaultSize" id ="XXS" (click)="size('XXS')">XXS</div>
+                        <div class="box" id ="XS" (click)="size('XS')" >XS</div>
+                        <div class="box" id ="S"(click)="size('S')">S</div>
+                        <div class="box" id ="M"(click)="size('M')">M</div>
+                        <div class="box" id ="L"(click)="size('L')">L</div>
+                        <div class="box" id ="XL"(click)="size('XL')">XL</div>
+                        <div class="box" id ="XXL"(click)="size('XXL')">XXL</div>              
+                      </div>
+                </div>
+
+                
+                
+                <br>
+                <mat-form-field>
+                  <span matPrefix>IDR.&nbsp;</span>
+                  <input  matInput placeholder="Price"  name="price" id="price" 
+                 
+                  #price
+                  [formControl]="PrPriceFormControl"
+                  [errorStateMatcher]="matcher"
+                  onkeydown="return ( event.ctrlKey 
+                            || event.altKey 
+                            || (47<event.keyCode && event.keyCode<58 && event.shiftKey==false) 
+                            || (95<event.keyCode && event.keyCode<106)
+                            || (event.keyCode==8) || (event.keyCode==9) 
+                            || (event.keyCode>34 && event.keyCode<40) 
+                            || (event.keyCode==46) 
+                            )">
+                  
+                  <mat-error *ngIf="PrPriceFormControl.hasError('required')">
+                    Product Price is <strong>required</strong>
+                  </mat-error>
+    
+                </mat-form-field>
+                
+              </div>
+              
+              <br>
+            <div style="text-align:center;">
+              <button mat-button class="cancelButton" (click)="onNoClick()" type="reset">
+                  <i class="material-icons">close</i> 
+                Cancel
+              </button>
+    
+              <button [promiseBtn]="promise" type="submit" mat-button class="loginButton" 
+                      #btnLogin (click)="addSellTransaction(price.value)"
+                      [disabled] ="PrPriceFormControl.hasError('required')">
+                      <i class="material-icons">radio_button_checked</i> 
+                      Confirm
+              </button>
+              <br>
+    
+            </div>
+         </form>
+          </div>
